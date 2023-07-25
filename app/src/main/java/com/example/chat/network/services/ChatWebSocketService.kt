@@ -20,6 +20,6 @@ interface ChatWebSocketService {
         const val BASE_URL="ws://10.0.2.2:8080"
     }
     sealed class SocketUrl(val url:String){
-        object SocketUrlApi: SocketUrl("${MessageService.BASE_URL}$/chat-socket")
+        object SocketUrlApi: SocketUrl("${BASE_URL}$/chat-socket")
     }
 }

@@ -24,6 +24,7 @@ object AppModule {
         return HttpClient(CIO){
             install(Logging)
             install(WebSockets)
+            //missing json
         }
     }
 

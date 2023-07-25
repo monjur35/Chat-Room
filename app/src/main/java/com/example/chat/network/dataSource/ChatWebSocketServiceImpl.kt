@@ -19,19 +19,20 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.isActive
 import kotlinx.serialization.json.Json
 import java.lang.Exception
+import javax.inject.Inject
 
-class ChatWebSocketServiceImpl (private val client: HttpClient): ChatWebSocketService {
+class ChatWebSocketServiceImpl @Inject constructor(private val client: HttpClient): ChatWebSocketService {
 
     private var webSocket:WebSocketSession?=null
 
     override suspend fun establishSession(userName: String): Resource<Unit> {
         return try {
             webSocket=client.webSocketSession {
-                url { ChatWebSocketService.SocketUrl.SocketUrlApi.url }
+                url { "${ChatWebSocketService.SocketUrl.SocketUrlApi.url}?username=$userName" }
             }
             if (webSocket?.isActive == true){
                 Resource.Success(Unit)
-            }else Resource.Error("Could not establsih connection with server")
+            }else Resource.Error("Could not establish connection with server")
 
         }catch (e:Exception){
             Resource.Error(e.localizedMessage)
