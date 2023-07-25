@@ -10,6 +10,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val a= MessageData("","sad",1627214400000L,"monjur")
-        Log.e("TAG", "onCreate: ${a.date}" )
+        Log.e("TAG", "onCreate: ${a.formattedDate}" )
     }
 }
