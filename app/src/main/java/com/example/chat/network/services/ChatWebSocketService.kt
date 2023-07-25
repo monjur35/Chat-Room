@@ -17,9 +17,9 @@ interface ChatWebSocketService {
 
 
     companion object{
-        const val BASE_URL="ws://10.0.2.2:8080"
+        const val BASE_URL="ws://100.100.100.79:8080"
     }
     sealed class SocketUrl(val url:String){
-        object SocketUrlApi: SocketUrl("${BASE_URL}$/chat-socket")
+        object SocketUrlApi: SocketUrl("${BASE_URL}/chat-socket")
     }
 }

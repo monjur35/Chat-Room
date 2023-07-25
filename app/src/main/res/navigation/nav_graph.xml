@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/joinChatFragment">
+
+    <fragment
+        android:id="@+id/joinChatFragment"
+        android:name="com.example.chat.JoinChatFragment"
+        android:label="fragment_join_chat"
+        tools:layout="@layout/fragment_join_chat" >
+        <action
+            android:id="@+id/action_joinChatFragment_to_chatRoomFragment"
+            app:destination="@id/chatRoomFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/chatRoomFragment"
+        android:name="com.example.chat.ChatRoomFragment"
+        android:label="fragment_chat_room"
+        tools:layout="@layout/fragment_chat_room" />
+</navigation>

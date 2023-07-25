@@ -1,5 +1,6 @@
 package com.example.chat.network.dataSource
 
+import android.util.Log
 import com.example.chat.models.MessageData
 import com.example.chat.network.services.ChatWebSocketService
 import com.example.chat.utils.Resource
@@ -35,7 +36,9 @@ class ChatWebSocketServiceImpl @Inject constructor(private val client: HttpClien
             }else Resource.Error("Could not establish connection with server")
 
         }catch (e:Exception){
+            Log.e("TAG", "establishSession: ${e.localizedMessage}" )
             Resource.Error(e.localizedMessage)
+
         }
     }
 
