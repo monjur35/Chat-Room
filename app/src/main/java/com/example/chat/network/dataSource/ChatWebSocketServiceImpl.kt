@@ -36,7 +36,7 @@ class ChatWebSocketServiceImpl @Inject constructor(private val client: HttpClien
             }else Resource.Error("Could not establish connection with server")
 
         }catch (e:Exception){
-            Log.e("TAG", "establishSession: ${e.localizedMessage}" )
+            Log.e("TAG", "establishSession: ${e.message}" )
             Resource.Error(e.localizedMessage)
 
         }

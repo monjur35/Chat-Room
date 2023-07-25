@@ -1,5 +1,6 @@
 package com.example.chat.network.dataSource
 
+import android.util.Log
 import com.example.chat.models.MessageData
 import com.example.chat.network.services.MessageService
 import io.ktor.client.*
@@ -13,6 +14,7 @@ class MessageServiceImpl @Inject constructor(private val client: HttpClient) : M
         return try {
             client.get(MessageService.ApiUrl.ALLMessageApi.url).body<List<MessageData>>()
         }catch (e:Exception){
+            Log.e("TAG", "getAllMsg:${e.message} ")
             emptyList()
         }
     }
