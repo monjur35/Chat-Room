@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        userNameViewModel.setUserNameState("MOnjur")
+        userNameViewModel.setUserNameState("Monjur")
         binding.btiiiiiiiin.setOnClickListener{
             userNameViewModel.userNameTxt.observe(this, Observer {
                 Log.e("TAG", "onCreate: $it" )

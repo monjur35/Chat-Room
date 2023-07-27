@@ -2,6 +2,7 @@ package com.example.chat.viewModels
 
 
 import android.os.Message
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
@@ -62,6 +63,7 @@ class ChatRoomViewModel @Inject constructor(
         viewModelScope.launch {
             val response =repository.getAllMsg()
             mutableLiveData.postValue(response)
+            Log.e("TAG", "getAllMsg: ${response.toString()}" )
         }
         return mutableLiveData
     }

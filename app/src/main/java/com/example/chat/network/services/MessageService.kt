@@ -12,10 +12,11 @@ interface MessageService {
 
 
     companion object{
-        const val BASE_URL="http://192.168.0.102:8080"
+       // const val BASE_URL="http://192.168.0.102:8080"
+        const val BASE_URL="http://100.100.100.79:80"
     }
 
     sealed class ApiUrl(val url:String){
-        object ALLMessageApi: ApiUrl("$BASE_URL/message")
+        object ALLMessageApi: ApiUrl("$BASE_URL/messages")
     }
 }

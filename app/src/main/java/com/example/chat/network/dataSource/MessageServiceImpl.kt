@@ -12,7 +12,9 @@ import javax.inject.Inject
 class MessageServiceImpl @Inject constructor(private val client: HttpClient) : MessageService {
     override suspend fun getAllMsg(): List<MessageData> {
         return try {
+
             client.get(MessageService.ApiUrl.ALLMessageApi.url).body<List<MessageData>>()
+
         }catch (e:Exception){
             Log.e("TAG", "getAllMsg:${e.message} ")
             emptyList()
