@@ -39,8 +39,8 @@ class ChatWebSocketServiceImpl @Inject constructor(private val client: HttpClien
              }*/
             client.webSocket(
                 method = HttpMethod.Get,
-                host = "100.100.100.79",
-                port = 80,
+                host = ChatWebSocketService.BASE_URL,
+                port = ChatWebSocketService.PORT.toInt(),
                 path = "/chat-socket?username=$userName"
             ) {
                 // this: DefaultClientWebSocketSession
@@ -57,7 +57,7 @@ class ChatWebSocketServiceImpl @Inject constructor(private val client: HttpClien
 
         } catch (e: Exception) {
             Log.e("TAG", "not establish Session: ${e.message}")
-            Resource.Error(e.localizedMessage)
+            Resource.Error(e.message.toString())
 
         }
     }
