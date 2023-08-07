@@ -42,14 +42,9 @@ class MainActivity : AppCompatActivity() {
             })
         }*/
 
-        lifecycleScope.launch {
-            Log.e("TAG", "onCreate: $")
-            userNameViewModel.isLoading.collectLatest {
-                Log.e("TAG", "onCreate: $it")
-                if (it) binding.spinKit.visibility=View.VISIBLE else binding.spinKit.visibility=View.GONE
-                Log.e("TAG", "onCreate: $it")
-            }
-        }
+
+
+
 
     }
 }

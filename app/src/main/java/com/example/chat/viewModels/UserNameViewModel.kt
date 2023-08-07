@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 
 class UserNameViewModel():ViewModel() {
     val userNameTxt= MutableLiveData<String>("")
-    val isLoading= MutableStateFlow(false)
+    val isLoading= MutableLiveData(false)
     private val _onJoinRoom= MutableSharedFlow<String>()
     val onJoinRoom=_onJoinRoom.asSharedFlow()
 
@@ -22,7 +22,7 @@ class UserNameViewModel():ViewModel() {
 
     fun onJoinChatClick(){
         viewModelScope.launch {
-            isLoading.emit(true)
+            isLoading.postValue(true)
             if (userNameTxt.value?.isNotBlank() == true){
                 _onJoinRoom.emit(userNameTxt.value!!)
             }

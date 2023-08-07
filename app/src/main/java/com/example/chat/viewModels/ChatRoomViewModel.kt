@@ -21,38 +21,38 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ChatRoomViewModel @Inject constructor(
-    private val repository: Repository,
-    private val savedStateHandle: SavedStateHandle
+    private val repository: Repository
 ) : ViewModel() {
 
     private val _messageTxt=MutableLiveData<String>("")
    // val messageTxt: State<String> =_messageTxt
 
-    public val chatMsgList=MutableLiveData<List<MessageData>>()
+    public val chatMsgList=MutableLiveData<List<MessageData>?>()
 
     private val _toastEvent= MutableSharedFlow<String>()
     val toastEvent=_toastEvent.asSharedFlow()
 
     init {
         getAllMsg()
-        savedStateHandle.get<String>("username")?:let {username->
-            viewModelScope.launch {
-                val result=repository.establishSession(username.toString())
-                when(result){
-                    is Resource.Success->{
-                        repository.observeIncomingMsg().onEach {
-                            val newMsgList= chatMsgList.value?.toMutableList()?.apply {
-                                add(0,it)
-                            }
-                            chatMsgList.value=newMsgList
-                        }.launchIn(viewModelScope)
-                    }
-                    is Resource.Error->{
-                        result.message?.let { _toastEvent.emit(it) } ?:"Unknown error"
-                    }
+    }
 
-                    else -> {}
+    fun establishSession(username:String){
+        viewModelScope.launch {
+            val result=repository.establishSession(username)
+            when(result){
+                is Resource.Success->{
+                    repository.observeIncomingMsg().onEach {
+                        val newMsgList= chatMsgList.value?.toMutableList()?.apply {
+                            add(0,it)
+                        }
+                        chatMsgList.value=newMsgList
+                    }.launchIn(viewModelScope)
                 }
+                is Resource.Error->{
+                    result.message?.let { _toastEvent.emit(it) } ?:"Unknown error"
+                }
+
+                else -> {}
             }
         }
     }
