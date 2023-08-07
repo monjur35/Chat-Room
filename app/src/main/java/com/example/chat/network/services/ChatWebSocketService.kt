@@ -20,6 +20,7 @@ interface ChatWebSocketService {
         const val BASE_URL="192.168.0.103"
         const val PORT="8080"
    // const val BASE_URL="ws://100.100.100.79"
+   // const val BASE_URL="ws://100.100.100.79"
 
     }
     sealed class SocketUrl(val url:String){
