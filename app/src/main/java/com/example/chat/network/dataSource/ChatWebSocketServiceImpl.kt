@@ -37,7 +37,6 @@ class ChatWebSocketServiceImpl @Inject constructor(private val client: HttpClien
             /* webSocket=client.webSocketSession {
                  url { "${ChatWebSocketService.SocketUrl.SocketUrlApi.url}}" }
              }*/
-
             client.webSocket(
                 method = HttpMethod.Get,
                 host = "100.100.100.79",

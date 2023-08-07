@@ -83,4 +83,7 @@ dependencies {
     implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor_version")
     implementation("io.ktor:ktor-client-content-negotiation:$ktor_version")
 
+    //spinkit
+    implementation 'com.github.ybq:Android-SpinKit:1.4.0'
+
 }

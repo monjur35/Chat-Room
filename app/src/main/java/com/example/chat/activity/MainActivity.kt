@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -16,6 +17,7 @@ import com.example.chat.models.MessageData
 import com.example.chat.viewModels.ChatRoomViewModel
 import com.example.chat.viewModels.UserNameViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -29,8 +31,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        userNameViewModel.setUserNameState("Monjur")
-        binding.btiiiiiiiin.setOnClickListener{
+        //userNameViewModel.setUserNameState("Monjur")
+       /* binding.btiiiiiiiin.setOnClickListener{
             userNameViewModel.userNameTxt.observe(this, Observer {
                 Log.e("TAG", "onCreate: $it" )
             })
@@ -38,6 +40,15 @@ class MainActivity : AppCompatActivity() {
             chatViewModel.chatMsgList.observe(this, Observer {
                 Log.e("TAG", "onCreate: ${it.toString()}" )
             })
+        }*/
+
+        lifecycleScope.launch {
+            Log.e("TAG", "onCreate: $")
+            userNameViewModel.isLoading.collectLatest {
+                Log.e("TAG", "onCreate: $it")
+                if (it) binding.spinKit.visibility=View.VISIBLE else binding.spinKit.visibility=View.GONE
+                Log.e("TAG", "onCreate: $it")
+            }
         }
 
     }
